@@ -13,6 +13,9 @@ from django.contrib.auth import login, authenticate
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
+from django.urls import path
+from . import views
 # from .populate import initiate
 
 
@@ -63,3 +66,10 @@ def login_user(request):
 # Create a `add_review` view to submit a review
 # def add_review(request):
 # ...
+def contact(request):
+    return render(request, "Contact.html")
+
+urlpatterns = [
+    path('about', views.about, name='about'),
+    path('contact', views.contact, name='contact'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
